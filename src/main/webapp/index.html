@@ -1,0 +1,125 @@
+<!--
+  Copyright (c) 2023 IBM Corp.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<html>
+    <head>
+		<title>Jakarta Data Sample</title>
+		<script type="text/javascript" src="js/find-all.js"></script>
+		<script type="text/javascript" src="js/find-by-rank.js"></script>
+		<script type="text/javascript" src="js/find-by-ship-size-and-rank.js"></script>		
+		<script type="text/javascript" src="js/app.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Asap" rel="stylesheet">
+		<link rel="stylesheet" href="css/app.css">
+		<link rel="stylesheet" href="css/toast.css">
+    </head>
+    <body>
+        <section id="appIntro" >
+            <div id="titleSection">
+                <h1 id="appTitle">Jakarta Data Sample</h1>
+                <div class="line"></div>
+                <div class="headerImage"></div>
+                <h2>Congrats on your shiny, new Open Liberty sample app!</h2>
+                <p>This sample app uses REST endpoints and Jakarta Validation to store data using Jakarta Data</p>
+            </div>
+			<div id="usersContainer" class="hFlexContainer">
+				<div id="userCreation" class="vFlexContainer">
+					<strong id="createCrewMember" class="flexSelfCenter">Register Crew Member<br>CrewMembers.save()</strong>
+					<div id="userCreationForm" class="vFlexContainer">
+						<div id="Name" class="vFlexContainer inputLine">
+							<span>Name</span>
+							<input id="crewMemberName" class="textBox" type="text">
+						</div>
+						<div id="ID" class="vFlexContainer inputLine">
+							<span>ID Number</span>
+							<input id="crewMemberID" class="textBox" type="text">
+						</div>
+						<div id="Rank" class="vFlexContainer inputLine">
+							<span>Rank</span>
+							<select id="crewMemberRank">
+									<option>Captain</option>
+									<option>Officer</option>
+									<option>Engineer</option>
+							</select>
+						</div>
+						<div id="Ship" class="vFlexContainer inputLine">
+							<span>Ship Assignment</span>
+							<select id="crewMemberShip">
+									<option>Liberty Saucer</option>
+									<option>Jakarta Sailboat</option>
+									<option>WebSphere Battleship</option>
+							</select>
+						</div>
+						<button id="registerButton" class="buttons" onclick="addCrewMember()">Register Crew Member</button>
+					</div>
+				</div>
+				<div id="queryMenu" class="vFlexContainer">
+					<strong id="createCrewMember" class="flexSelfCenter">Queries<br>&nbsp;</strong>
+					<div id="queryButtons" class="vFlexContainer">
+						<button id="findAllButton" class="buttons queryButton selectedQuery" onclick="setActiveQuery('findAll')">findAll</button>
+						<button id="findByRankButton" class="buttons queryButton" onclick="setActiveQuery('findByRank')">findByRank</button>
+						<button id="findByShipSizeAndRankButton" class="buttons queryButton" onclick="setActiveQuery('findByShipSizeAndRank')">findByShipSizeAndRank</button>
+					</div>
+				</div>
+				<div id="findAll" class="vFlexContainer queryContainer" style="display: flex">
+					<strong id="createCrewMember" class="flexSelfCenter">Crew Members<br>CrewMembers.findAll()</strong>
+					<div id="createCrewMember" class="flexSelfCenter">(click to remove)</div>
+					<div id="userBoxes" class="flexBox hFlexContainer">
+					</div>
+				</div>
+				<div id="findByRank" class="flexBox vFlexContainer queryContainer">
+					<strong id="createCrewMember" class="flexSelfCenter">Crew Members by Rank<br>CrewMembers.findByRank()</strong>
+					<div id="rankBoxes" class="hFlexContainer">
+						<div id="Captain" class="flexBox"></div>
+						<div id="Officer" class="flexBox"></div>
+						<div id="Engineer" class="flexBox"></div>
+					</div>
+				</div>
+				<div id="findByShipSizeAndRank" class="flexBox vFlexContainer queryContainer">
+					<strong id="createCrewMember" class="flexSelfCenter">Crew Members by Ship Size and Rank<br>CrewMembers.findByShipSizeAndRank()</strong>
+					<div id="findByShipSizeAndRankSelectors" class="hFlexContainer">
+						<select id="shipSizeSelector" onchange="refreshDisplay()">
+							<option>small</option>
+							<option>large</option>
+						</select>
+						<select id="rankSelector" onchange="refreshDisplay()">
+							<option>Captain</option>
+							<option>Officer</option>
+							<option>Engineer</option>
+						</select>
+					</div>
+					<div id="shipAndRankBoxes" class="flexBox hFlexContainer"></div>
+				</div>
+			</div>
+        </section>
+    </body>
+
+    <footer class="bodyFooter">
+        <div class="bodyFooterLink">
+          <a id="licenseLink"href="https://github.com/OpenLiberty/open-liberty/blob/master/LICENSE">License</a>
+          <a href="https://twitter.com/OpenLibertyIO">Twitter</a>
+          <a href="https://github.com/OpenLiberty">GitHub</a>
+          <a href="https://openliberty.io/">openliberty.io</a>
+        </div>
+        <p id="footer_text">an IBM open source project</p>
+        <p id="footer_copyright">&copy;Copyright IBM Corp. 2023</p>
+	</footer>
+	
+	<div id="toast">
+</html>
+<script>
+refreshDisplay();
+</script>
